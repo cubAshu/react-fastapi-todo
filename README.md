@@ -4,7 +4,7 @@ Full-stack sample app with:
 
 | Service    | Tech                         | Port (host) |
 | ---------- | ---------------------------- | ----------- |
-| Frontend   | React (Vite) + nginx         | **3000**    |
+| Frontend   | React (Vite) + Node static   | **3000**    |
 | Backend    | Python FastAPI + Uvicorn     | **8000**    |
 | Database   | PostgreSQL 16                | **5432**    |
 
