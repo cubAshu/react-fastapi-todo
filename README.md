@@ -120,6 +120,7 @@ See `.env.example`.
 
 ## Notes
 
-- Compose networking: frontend nginx proxies `/api` to the `backend` service; browser only needs port **3000**.
+- Compose networking: the frontend container proxies `/api` to the `backend` service; browser only needs port **3000**.
 - Default DB credentials are for **demo only** — change them before any real deployment.
 - Backend auto-creates the `todos` table on startup.
+- Stack verified with **rootless Podman** + `podman compose` (Docker Compose v2 plugin works the same).
