@@ -43,7 +43,11 @@ services:
       context: ./frontend
     container_name: reactapp-frontend
     ports:
-      - "3000:80"
+      # host:container — nginx listens on 8080 inside the container
+      - "3000:8080"
+    # SELinux on Fedora rootless Podman can block nginx log/device access
+    security_opt:
+      - label=disable
     depends_on:
       backend:
         condition: service_healthy

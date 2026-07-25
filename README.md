@@ -4,7 +4,7 @@ Full-stack sample app with:
 
 | Service    | Tech                         | Port (host) |
 | ---------- | ---------------------------- | ----------- |
-| Frontend   | React (Vite) + Node static   | **3000**    |
+| Frontend   | React (Vite build) + nginx   | **3000**    |
 | Backend    | Python FastAPI + Uvicorn     | **8000**    |
 | Database   | PostgreSQL 16                | **5432**    |
 
@@ -120,7 +120,8 @@ See `.env.example`.
 
 ## Notes
 
-- Compose networking: the frontend container proxies `/api` to the `backend` service; browser only needs port **3000**.
+- Compose networking: **nginx** in the frontend container proxies `/api` to the `backend` service; browser only needs port **3000**.
+- **Vite** is only used at *image build time* to compile React. At runtime, nginx serves `dist/` and proxies API calls (see `frontend/nginx.conf`).
 - Default DB credentials are for **demo only** — change them before any real deployment.
 - Backend auto-creates the `todos` table on startup.
 - Stack verified with **rootless Podman** + `podman compose` (Docker Compose v2 plugin works the same).
