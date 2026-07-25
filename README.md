@@ -24,7 +24,8 @@ reactapp/
 └── README.md
 ```
 
-- Architecture, reverse proxy, and request flow: [`docs/architecture.md`](docs/architecture.md)
+- **How it works (learning guide):** [`docs/how-it-works.md`](docs/how-it-works.md) — page load, todo click, reverse proxy, K8s Services
+- Architecture reference: [`docs/architecture.md`](docs/architecture.md)
 - Kubernetes manifests (optional): [`k8s/README.md`](k8s/README.md)
 
 ---

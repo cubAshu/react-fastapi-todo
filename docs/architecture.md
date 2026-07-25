@@ -221,3 +221,11 @@ See [`k8s/README.md`](../k8s/README.md) for apply notes.
 ## Mental model (one paragraph)
 
 **Vite** builds React into static files. **nginx** serves those files and **reverse-proxies** any path under `/api` to **FastAPI**. FastAPI reads/writes **Postgres**. The browser only needs the frontend entry (port 3000 or an Ingress host). “Proxy” here means reverse proxy: a server-side middleman in front of your API, not a corporate outbound proxy.
+
+---
+
+## Deeper learning guide
+
+Step-by-step explanations (page load, click todo, `proxy_pass` → Service, K8s Pods, where to look in YAML):
+
+→ **[`how-it-works.md`](how-it-works.md)**
