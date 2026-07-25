@@ -16,12 +16,16 @@ The UI is a small **Todo** app that creates, lists, toggles, and deletes items i
 
 ```
 reactapp/
-├── frontend/          # React (Vite)
+├── frontend/          # React (Vite) + nginx
 ├── backend/           # FastAPI + SQLAlchemy
 ├── docker-compose.yml # 3 services: frontend, backend, db
+├── k8s/               # Kubernetes Pods/Services/Ingress (not applied by default)
 ├── .env.example
 └── README.md
 ```
+
+- Architecture, reverse proxy, and request flow: [`docs/architecture.md`](docs/architecture.md)
+- Kubernetes manifests (optional): [`k8s/README.md`](k8s/README.md)
 
 ---
 
