@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: todo-frontend-service
+  namespace: app
+spec:
+  selector:
+    app: todo-frontend
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 5173
+  type: ClusterIP

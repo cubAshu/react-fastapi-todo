@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-backend-policy
+  namespace: db
+spec:
+  podSelector:
+    matchLabels:
+      app: todo-db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: app
+      podSelector:
+        matchLabels:
+          app: todo-backend
+    ports:
+    - protocol: TCP
+      port: 5432
+
+

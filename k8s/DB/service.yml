@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: db-service
+  namespace: db
+spec:
+  clusterIP: None
+  selector:
+    app: todo-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

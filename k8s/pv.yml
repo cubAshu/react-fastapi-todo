@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume
+  
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: /data/todo-postgres    # ye ek naya path h , config me /mnt/data wala node path common-pv pe mounted h , so pv ko bhi same node path me mount honna  hoga
+    type: DirectoryOrCreate

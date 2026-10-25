@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: todo-backend-deployment
+  namespace: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-backend
+  template:
+    metadata:
+      labels:
+        app: todo-backend
+    spec:  
+      nodeSelector:
+        tier: app
+      containers:
+      - name: todo-backend-container
+        image: cubashu/todo-back:1.0 
+
+        envFrom:
+        - configMapRef:
+            name: backend-configmap
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+        ports:
+        - containerPort: 8000
+          protocol: TCP

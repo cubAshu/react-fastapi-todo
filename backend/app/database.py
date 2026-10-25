@@ -4,10 +4,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 # SQLAlchemy 2 + psycopg (v3) driver. Accepts either postgresql:// or postgresql+psycopg://
-_raw_url = os.getenv(
-    "DATABASE_URL",
-    "postgresql://todos:todos@localhost:5432/todos",
-)
+#_raw_url = os.getenv(
+ #   "DATABASE_URL",
+#    "postgresql://ashu:ashu@localhost:5432/ashu",
+#)
 if _raw_url.startswith("postgresql://") and "+psycopg" not in _raw_url:
     DATABASE_URL = _raw_url.replace("postgresql://", "postgresql+psycopg://", 1)
 elif _raw_url.startswith("postgres://"):

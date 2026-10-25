@@ -1,0 +1,47 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend-deployment
+  namespace: app
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: todo-frontend
+
+  template:
+    metadata:
+      labels:
+        app: todo-frontend
+
+    spec:
+      nodeSelector: 
+          tier: app
+      containers:
+        - name: todo-frontend-container
+          image: cubashu/todo-front:1.3
+
+          ports:
+            - containerPort: 5173
+              protocol: TCP
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 254Mi
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5173
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5173

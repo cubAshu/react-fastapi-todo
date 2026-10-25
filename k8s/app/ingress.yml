@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+  namespace: app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik 
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: todo-frontend-service
+            port:
+              number: 8081
+      - pathType: Prefix
+        path: /api
+        backend:
+          service:
+            name: todo-backend-service
+            port:
+              number: 8082

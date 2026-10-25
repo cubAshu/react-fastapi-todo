@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-backend-network-policy
+  namespace: app
+spec:
+  podSelector:
+    matchLabels:
+      app: todo-backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: todo-frontend
+    ports:         # jis pod pe traffic aa rha h , iss case me backend container ka default port
+    - protocol: TCP
+      port: 8000
+  - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: traefik
+    ports:
+      - protocol: TCP
+        port: 8000
+ 
+

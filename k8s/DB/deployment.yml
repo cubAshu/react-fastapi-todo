@@ -1,0 +1,55 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: todo-db-statefulset
+  namespace: db
+spec:
+  replicas: 1
+  serviceName: db-service
+  selector:
+    matchLabels:
+      app: todo-db
+  template:
+    metadata:
+      labels:
+        app: todo-db
+    spec:
+      nodeSelector:
+        tier: db
+      containers:
+      - name: todo-db-container
+        image: postgres:16
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: todo-db-configmap
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: todo-db-secrets
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: todo-db-configmap
+              key: POSTGRES_DB      
+              
+        volumeMounts:
+        - name: todo-db-pvc
+          mountPath: /var/lib/postgresql/data 
+
+  volumeClaimTemplates:
+  - metadata:
+      name: todo-db-pvc
+    
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: manual
+      resources:
+        requests:
+          storage: 1Gi

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-db-configmap
+  namespace: db
+data:
+  POSTGRES_USER: ashu
+  POSTGRES_DB: todo_db
+  
